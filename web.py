@@ -1,13 +1,16 @@
 import streamlit as st
-from config import charts
+from config import CHARTS, TIMEFRAMES_TO_SELENIUM_KEY
 import requests
-from printer_code import print_two_images,print_image
+# from printer_code import print_two_images,print_image
+
+def print_two_images(path1,path2):
+    print(f"Images: {path1}, and {path2} have been saved!")
 
 st.title('Chart Screenshot Tool')
 
 # chart = st.selectbox('Select Chart', ('EUR', 'DXY'))
-currencies = list(charts.keys())
-timeframe = st.selectbox('Select Timeframe', ('hour', 'day', 'week', '4_hour', '15_min','5_min'))
+currencies = list(CHARTS.keys())
+timeframe = st.selectbox('Select Timeframe', list(TIMEFRAMES_TO_SELENIUM_KEY.keys()))
 
 if st.button('Capture Screenshot'):
     try:
