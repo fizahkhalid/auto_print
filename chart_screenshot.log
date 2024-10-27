@@ -71,3 +71,16 @@
 2024-10-27 16:35:28,567 - INFO - URL loaded successfully: https://www.tradingview.com/chart/?symbol=OANDA%3AEURUSD
 2024-10-27 16:35:29,196 - INFO - Clicking on the watchlist icon.
 2024-10-27 16:35:29,513 - INFO - Watchlist icon clicked.
+2024-10-27 16:41:37,256 - INFO - WebDriver initialized successfully.
+2024-10-27 16:41:37,256 - INFO - Loading URL: https://www.tradingview.com/chart/?symbol=OANDA%3AEURUSD
+2024-10-27 16:41:40,471 - INFO - URL loaded successfully: https://www.tradingview.com/chart/?symbol=OANDA%3AEURUSD
+2024-10-27 16:41:40,471 - INFO - Setting timeframe: 1H
+2024-10-27 16:41:43,538 - INFO - Timeframe set to 1H
+2024-10-27 16:41:43,538 - INFO - Clicking on the watchlist icon.
+2024-10-27 16:41:43,875 - INFO - Watchlist icon clicked.
+2024-10-27 16:41:44,924 - INFO - Dropdown opened successfully.
+2024-10-27 16:41:45,996 - INFO - Remove 1 indicator option clicked successfully.
+2024-10-27 16:41:46,128 - INFO - Loading URL: https://www.tradingview.com/chart/?symbol=TVC%3ADXY
+2024-10-27 16:41:46,771 - INFO - URL loaded successfully: https://www.tradingview.com/chart/?symbol=TVC%3ADXY
+2024-10-27 16:41:46,771 - INFO - Setting timeframe: 1H
+2024-10-27 16:41:49,793 - INFO - Timeframe set to 1H

@@ -39,6 +39,34 @@ def load_url(driver, url):
     logging.info(f"URL loaded successfully: {url}")
     return driver
 
+
+def remove_volume_indicator(driver):
+    """
+    Function to open the dropdown menu and remove the volume indicator
+    on a trading chart.
+    
+    Parameters:
+    driver (webdriver): Selenium WebDriver instance.
+    """
+    try:
+        # Step 1: Locate and click on the dropdown to open it
+        dropdown_button = driver.find_element(By.CSS_SELECTOR, "div[data-name='removeAllDrawingTools']")
+        dropdown_button.click()
+        logging.info("Dropdown opened successfully.")
+        
+        # Pause briefly to let the options load
+        time.sleep(1)
+
+        # Step 2: Locate and click on the "Remove 1 indicator" option
+        remove_indicator_option = driver.find_element(By.CSS_SELECTOR, "div[data-name='remove-studies']")
+        remove_indicator_option.click()
+        logging.info("Remove 1 indicator option clicked successfully.")
+        return driver
+    
+    except Exception as e:
+        logging.info(f"An error occurred while trying to remove the indicator: {e}")
+        return driver
+
 def load_timeframe(driver, timeframe_key):
     logging.info(f"Setting timeframe: {timeframe_key}")
     body_element = WebDriverWait(driver, 15).until(EC.presence_of_element_located((By.TAG_NAME, 'body')))
@@ -86,13 +114,21 @@ def take_screenshots(timeframe):
     screenshot_paths = {}
     try:
         WATCHLIST_CLOSED = False
+        VOL_IND_CLOSED = False
         for chart, url in CHARTS.items():
             driver = load_url(driver, url)  # Load each chart URL
             driver = load_timeframe(driver, timeframe_key)  # Set timeframe for each chart
             
+            #Since we are using a single driver for multiple charts, closing the watchlist once is enough
             if not WATCHLIST_CLOSED:
                 driver = click_watchlist_icon(driver)
                 WATCHLIST_CLOSED = True
+
+            # Closing volumn indicators (only required once in single instance of web driver)
+            if not VOL_IND_CLOSED:
+                driver = remove_volume_indicator(driver)
+                VOL_IND_CLOSED = True
+                
               # Open necessary UI elements
             save_path = get_screenshot_path(chart, timeframe)  # Get unique save path
             driver.save_screenshot(save_path)  # Save screenshot
